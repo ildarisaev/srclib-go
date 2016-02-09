@@ -15,10 +15,7 @@ before_install:
 install:
 
 # installing srclib
-  - mkdir $HOME/gocode
-  - export GOPATH=$HOME/gocode
   - go get -u -v sourcegraph.com/sourcegraph/srclib/cmd/srclib
-  - export PATH=$PATH:$HOME/gopath/bin
   - mkdir -p $HOME/.srclib/sourcegraph.com/sourcegraph
 
 # registering C# toolchain
