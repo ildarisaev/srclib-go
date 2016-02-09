@@ -4,9 +4,19 @@ go: 1.5.1
 
 sudo: false
 
+before_install:
+  - mkdir -p $HOME/gopath/src/sourcegraph.com/sourcegraph $HOME/testgopath
+  - mv $TRAVIS_BUILD_DIR $HOME/gopath/src/sourcegraph.com/sourcegraph/srclib-go
+  - export TRAVIS_BUILD_DIR=$HOME/gopath/src/sourcegraph.com/sourcegraph/srclib-go
+  - cd $TRAVIS_BUILD_DIR
+  - export PATH=$PATH:$HOME/gopath/bin
+  - export GOBIN=$HOME/gopath/bin
+
 install:
 
 # installing srclib
+  - mkdir $HOME/gocode
+  - export GOPATH=$HOME/gocode
   - go get -u -v sourcegraph.com/sourcegraph/srclib/cmd/srclib
   - export PATH=$PATH:$HOME/gopath/bin
   - mkdir -p $HOME/.srclib/sourcegraph.com/sourcegraph
